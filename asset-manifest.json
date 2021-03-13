@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/mapapp/static/css/main.ee197cb9.chunk.css",
+    "main.js": "/mapapp/static/js/main.be082771.chunk.js",
+    "main.js.map": "/mapapp/static/js/main.be082771.chunk.js.map",
+    "runtime-main.js": "/mapapp/static/js/runtime-main.c10ef61f.js",
+    "runtime-main.js.map": "/mapapp/static/js/runtime-main.c10ef61f.js.map",
+    "static/css/2.7ebcfb48.chunk.css": "/mapapp/static/css/2.7ebcfb48.chunk.css",
+    "static/js/2.9557bbf8.chunk.js": "/mapapp/static/js/2.9557bbf8.chunk.js",
+    "static/js/2.9557bbf8.chunk.js.map": "/mapapp/static/js/2.9557bbf8.chunk.js.map",
+    "static/js/3.83988ff1.chunk.js": "/mapapp/static/js/3.83988ff1.chunk.js",
+    "static/js/3.83988ff1.chunk.js.map": "/mapapp/static/js/3.83988ff1.chunk.js.map",
+    "index.html": "/mapapp/index.html",
+    "static/css/2.7ebcfb48.chunk.css.map": "/mapapp/static/css/2.7ebcfb48.chunk.css.map",
+    "static/css/main.ee197cb9.chunk.css.map": "/mapapp/static/css/main.ee197cb9.chunk.css.map",
+    "static/js/2.9557bbf8.chunk.js.LICENSE.txt": "/mapapp/static/js/2.9557bbf8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c10ef61f.js",
+    "static/css/2.7ebcfb48.chunk.css",
+    "static/js/2.9557bbf8.chunk.js",
+    "static/css/main.ee197cb9.chunk.css",
+    "static/js/main.be082771.chunk.js"
+  ]
+}
