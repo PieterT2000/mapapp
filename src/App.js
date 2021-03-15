@@ -1,8 +1,11 @@
-import "./App.scss";
-import React, { useState } from "react";
+import "ol/ol.css";
+import "./styles/app.scss";
+import React, { useState, useEffect } from "react";
 
 import MapWrapper from "./Map/MapWrapper";
 import { GeoJSON } from "ol/format";
+import Input from "./Components/Input";
+import SideBar from "./Components/SideBar";
 
 function App() {
   const [woonplaats, setWoonplaats] = useState("");
@@ -10,13 +13,6 @@ function App() {
 
   let api =
     "https://geodata.nationaalgeoregister.nl/bag/wfs/v1_1?service=WFS&version=2.0.0&request=GetFeature&typename=bag:woonplaats&count=5&outputFormat=json&count-5";
-
-  const handleInput = (e) => {
-    let val = e.target.value;
-    // Capitalize woonplaats
-    val = val.charAt(0).toUpperCase() + val.slice(1);
-    setWoonplaats(val);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,17 +34,20 @@ function App() {
       });
   };
 
+  // const handleInput = (e) => {
+  //   let val = e.target.value.trim();
+
+  //   // We're only interested in top 10 matches
+  //   let placeMatches = places.filter((place) => {
+  //     const regex = new RegExp(`^${val}`, "gi");
+  //     return place.match(regex);
+  //   }).slice(0,10);
+  //   setMatches(placeMatches);
+  // };
+
   return (
     <div className="App">
-      <h1>Test map!</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          onChange={(e) => handleInput(e)}
-          type="text"
-          autoComplete="off"
-        />
-        <button>Submit</button>
-      </form>
+      <SideBar submitHandler={handleSubmit} />
       <MapWrapper features={features} />
     </div>
   );

@@ -1,4 +1,3 @@
-import "ol/ol.css";
 import React, { useState, useEffect, useRef } from "react";
 import { Map, View } from "ol";
 import VectorLayer from "ol/layer/Vector";
@@ -10,6 +9,9 @@ import { Stroke, Fill, Style } from "ol/style";
 import proj4 from "proj4";
 import { register } from "ol/proj/proj4";
 import { get as getProjection } from "ol/proj";
+import MousePosition from "ol/control/MousePosition";
+import { defaults as defaultControls } from "ol/control";
+import { createStringXY } from "ol/coordinate";
 
 const MapWrapper = (props) => {
   const [map, setMap] = useState();
@@ -39,13 +41,18 @@ const MapWrapper = (props) => {
       source: vectorSource,
       style: new Style({
         stroke: new Stroke({
-          color: "rgba(0, 0, 255, 1.0)",
+          color: "#282b9d",
           width: 2,
         }),
         fill: new Fill({
-          color: "rgba(0, 0, 255, 0.4)",
+          color: "rgba(40, 43, 197, 0.5)",
         }),
       }),
+    });
+
+    const mousePositionControl = new MousePosition({
+      coordinateFormat: createStringXY(1),
+      undefinedHTML: "XY Coordinates",
     });
 
     const initialMap = new Map({
@@ -63,6 +70,7 @@ const MapWrapper = (props) => {
         center: [142892.19, 470783.87],
         zoom: 9,
       }),
+      controls: defaultControls().extend([mousePositionControl]),
     });
 
     setMap(initialMap);

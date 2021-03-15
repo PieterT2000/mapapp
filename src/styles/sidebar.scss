@@ -1,0 +1,37 @@
+$blue: #282b9d;
+$white: #fdfdfe;
+$gray: #d6d8eb;
+
+.sidebar {
+  .header {
+    background-color: $blue;
+    color: $white;
+    padding: 30px;
+    text-align: left;
+    h2 {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0;
+    }
+    p {
+      font-size: 17px;
+      line-height: 1.3em;
+    }
+  }
+}
+
+.typeahead {
+  .upper {
+    padding: 20px;
+
+    .input-wrapper {
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .lower {
+    border-top: 2px solid $gray;
+  }
+}
