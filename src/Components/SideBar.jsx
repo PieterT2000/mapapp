@@ -10,7 +10,8 @@ const SideBar = ({ submitHandler }) => {
   // Load places on first render asynchrounsly
   useEffect(() => {
     async function fetchPlaces() {
-      const res = await fetch("mapapp/places.txt");
+      // Use absolute URL path as places.txt is placed in public folder
+      const res = await fetch(window.location.href + "/places.txt");
       const places = await res.text();
       const placesArr = places.split("\n");
       setPlaces(placesArr);
