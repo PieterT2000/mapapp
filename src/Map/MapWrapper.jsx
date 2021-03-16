@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Map, View } from "ol";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
-import { GeoJSON } from "ol/format";
+import VectorSource from "ol/source/Vector";
+import VectorLayer from "ol/layer/Vector";
 import { Stroke, Fill, Style } from "ol/style";
+import { GeoJSON } from "ol/format";
 import proj4 from "proj4";
 import { register } from "ol/proj/proj4";
 import { get as getProjection } from "ol/proj";
-import MousePosition from "ol/control/MousePosition";
 import { defaults as defaultControls } from "ol/control";
+import MousePosition from "ol/control/MousePosition";
 import { createStringXY } from "ol/coordinate";
 
 const MapWrapper = (props) => {
@@ -45,7 +45,7 @@ const MapWrapper = (props) => {
           width: 2,
         }),
         fill: new Fill({
-          color: "rgba(40, 43, 197, 0.5)",
+          color: "rgba(40, 43, 197, 0.45)",
         }),
       }),
     });
@@ -78,6 +78,7 @@ const MapWrapper = (props) => {
     setFeaturesLayer(vector);
   }, []);
 
+  // Update map directly whenever a new vector layer is passed down the props
   useEffect(() => {
     const { features } = props;
 
@@ -89,11 +90,10 @@ const MapWrapper = (props) => {
         })
       );
 
-      // Get Extent
+      // Zoom in on the first instance of the selected place
       const extent = features[0].values_.geometry.extent_;
-      // Zoom map to extent of vector layer
       map.getView().fit(extent, {
-        padding: [100, 100, 100, 100],
+        padding: [150, 150, 150, 150],
       });
     }
   }, [props.features]);

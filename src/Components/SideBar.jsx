@@ -1,12 +1,13 @@
 import "../styles/sidebar.scss";
+import { ReactComponent as Smiley } from "../styles/icons/happiness.svg";
 
 import React, { useEffect, useState } from "react";
-import Input from "./Input";
+import TypeAhead from "./TypeAhead";
 
 const SideBar = ({ submitHandler }) => {
   const [places, setPlaces] = useState([]);
 
-  // Load places async
+  // Load places on first render asynchrounsly
   useEffect(() => {
     async function fetchPlaces() {
       const res = await fetch("mapapp/places.txt");
@@ -20,13 +21,13 @@ const SideBar = ({ submitHandler }) => {
   return (
     <div className="sidebar">
       <div className="header">
-        <h2>Lie of the land</h2>
+        <h2>🗺️ Lie of the land</h2>
         <p>
           By typing in your placename, you can check out your town's/city's
-          borders. (to make sure you will never cross the border!)
+          borders so you always know how far to go. {<Smiley />}
         </p>
       </div>
-      <Input submitHandler={submitHandler} places={places} />
+      <TypeAhead submitHandler={submitHandler} places={places} />
     </div>
   );
 };

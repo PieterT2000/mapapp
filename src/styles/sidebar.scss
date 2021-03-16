@@ -2,36 +2,124 @@ $blue: #282b9d;
 $white: #fdfdfe;
 $gray: #d6d8eb;
 
-.sidebar {
-  .header {
-    background-color: $blue;
-    color: $white;
-    padding: 30px;
-    text-align: left;
-    h2 {
-      font-size: 32px;
-      font-weight: 600;
-      margin: 0;
-    }
-    p {
-      font-size: 17px;
-      line-height: 1.3em;
+$leftOffset: 25px;
+$inputPaddingTop: 12px;
+
+@mixin center-abs {
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+/* HEADER STYLES */
+.header {
+  background-color: $blue;
+  color: $white;
+  padding: 30px $leftOffset;
+  text-align: left;
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0;
+  }
+  p {
+    font-size: 17px;
+    line-height: 1.3em;
+    svg {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
     }
   }
 }
 
+/* TYPEAHEAD STYLES */
 .typeahead {
   .upper {
-    padding: 20px;
+    padding: 20px $leftOffset;
 
     .input-wrapper {
-      input {
+      position: relative;
+      input[type="text"] {
+        -webkit-box-sizing: border-box; // Safari/Chrome, other WebKit
+        -moz-box-sizing: border-box; // Firefox, other Gecko
+        box-sizing: border-box; // Opera/IE8+
         width: 100%;
+        outline: 0;
+        padding: $inputPaddingTop 30px;
+        border: 0;
+        color: $blue;
+        border-bottom: 2px solid $gray;
+        font-size: 18px;
+        &.active {
+            border-color: $blue;
+        }
+      }
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        content: '';
+        background-image: url(./icons/pin_gray.svg);
+        @include center-abs();
+      }
+      &.selected::before {
+          background-image: url(./icons/pin.svg);
       }
     }
   }
 
   .lower {
+    padding: 20px 0;
     border-top: 2px solid $gray;
+    // Although Parent is set to overflow:hidden, enable nested scroll for child
+    overflow-y: auto;
+    height: calc(100vh - 310px);
+
+    .suggestions {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      font-size: 18px;
+      color: $blue;
+      li {
+        position: relative;
+        padding: $inputPaddingTop 0 $inputPaddingTop 30px + $leftOffset;
+        cursor: pointer;
+        // Location icon
+        &::before {
+          position: absolute;
+          top: 0;
+          left: $leftOffset;
+          width: 18px;
+          height: 18px;
+          content: '';
+          background-image: url(./icons/pin.svg);
+          @include center-abs();
+        }
+
+        // Hover and focus styles
+        &:hover {
+          background-color: rgba($color: $blue, $alpha: 0.15);
+          &::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: $blue;
+          }
+        }
+
+      }
+    }
   }
 }
