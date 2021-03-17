@@ -13,14 +13,14 @@ import { defaults as defaultControls } from "ol/control";
 import MousePosition from "ol/control/MousePosition";
 import { createStringXY } from "ol/coordinate";
 
-const MapWrapper = (props) => {
+const MapWrapper = ({ renderCompleteListener, features }) => {
   const [map, setMap] = useState();
   const [featuresLayer, setFeaturesLayer] = useState(null);
 
   // Stores reference to element into which map should render
   const mapElement = useRef();
 
-  // Initialize map on first render
+  // Initialises map on first render
   useEffect(() => {
     // Set Dutch projection definition that is to be used by the OSM baselayer
     proj4.defs(
@@ -73,16 +73,20 @@ const MapWrapper = (props) => {
       controls: defaultControls().extend([mousePositionControl]),
     });
 
+    // Register evt listener for spinner when we update vector layer using user input
+    initialMap.on("rendercomplete", renderCompleteListener);
+
     setMap(initialMap);
     // Save features to state so we can later edit the vector source if props.features changes
     setFeaturesLayer(vector);
+
+    // Clean up event listeners
+    return () => initialMap.un("rendercomplete", renderCompleteListener);
   }, []);
 
   // Update map directly whenever a new vector layer is passed down the props
   useEffect(() => {
-    const { features } = props;
-
-    // On first render or in case the API returned nothing, features will be an empty array
+    // On first render or in case the API returns nothing, features will be an empty array
     if (features.length) {
       featuresLayer.setSource(
         new VectorSource({
@@ -96,7 +100,7 @@ const MapWrapper = (props) => {
         padding: [150, 150, 150, 150],
       });
     }
-  }, [props.features]);
+  }, [features]);
 
   return <div ref={mapElement} className="map-container"></div>;
 };

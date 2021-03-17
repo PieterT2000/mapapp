@@ -1,3 +1,5 @@
+@import 'shared.scss';
+
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -28,4 +30,15 @@ body {
   bottom: 0;
   left: 0;
   right: unset;
+}
+
+@media (max-width:650px) {
+  .App {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+  .map-container {
+    width: auto;
+    padding: 0 $leftOffset;
+  }
 }

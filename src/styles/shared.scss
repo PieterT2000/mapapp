@@ -1,0 +1,22 @@
+$blue: #282b9d;
+$white: #fdfdfe;
+$gray: #d6d8eb;
+
+// Left offset for sidebar
+$leftOffset: 25px;
+
+@mixin transform($fn) {
+  transform: $fn;
+  -webkit-transform: $fn;
+  -moz-transform: $fn;
+  -ms-transform: $fn;
+  -o-transform: $fn;
+}
+
+@mixin border-radius($rad:0%) {
+  border-radius: $rad;
+  -webkit-border-radius: $rad;
+  -moz-border-radius: $rad;
+  -ms-border-radius: $rad;
+  -o-border-radius: $rad;
+}

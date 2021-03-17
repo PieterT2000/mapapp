@@ -4,10 +4,10 @@ import { ReactComponent as Smiley } from "../styles/icons/happiness.svg";
 import React, { useEffect, useState } from "react";
 import TypeAhead from "./TypeAhead";
 
-const SideBar = ({ submitHandler }) => {
+const SideBar = ({ submitHandler, renderComplete }) => {
   const [places, setPlaces] = useState([]);
 
-  // Load places on first render asynchrounsly
+  // Loads places on first render asynchrounsly and passed them as a prop to TypeAhead
   useEffect(() => {
     async function fetchPlaces() {
       // Use absolute URL path as places.txt is placed in public folder
@@ -28,7 +28,11 @@ const SideBar = ({ submitHandler }) => {
           borders so you always know how far to go. {<Smiley />}
         </p>
       </div>
-      <TypeAhead submitHandler={submitHandler} places={places} />
+      <TypeAhead
+        renderComplete={renderComplete}
+        submitHandler={submitHandler}
+        places={places}
+      />
     </div>
   );
 };
