@@ -13,5 +13,5 @@ In the project directory, you can run:
 ## Features
 - [x] Search Suggestions
 - [x] Responsive
-- [x] Accessibility
+- [x] Keyboard selection for search suggestions
 - [x] Coordinates from mouse position
