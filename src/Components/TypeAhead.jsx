@@ -60,9 +60,12 @@ const TypeAhead = ({ submitHandler, places, renderComplete }) => {
    * Effects: Initiate fetching of new vector source
    */
   const handleClick = ({ target }) => {
-    if (!target.matches("li")) return;
+    if (!target.matches("li") && !target.matches("strong")) return;
 
-    const placeName = target.textContent.trim();
+    // In case target is <strong> element, get content of parent <li>
+    const placeName = target.matches("strong")
+      ? target.parentElement.textContent.trim()
+      : target.textContent.trim();
     // Put selection in text input field
     setInput(placeName);
     handleSelection(placeName);
