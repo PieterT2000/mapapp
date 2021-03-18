@@ -1,4 +1,4 @@
-@import 'shared.scss';
+@import "shared.scss";
 
 body {
   margin: 0;
@@ -32,7 +32,7 @@ body {
   right: unset;
 }
 
-@media (max-width:650px) {
+@media (max-width: 650px) {
   .App {
     grid-template-columns: 1fr;
     overflow: auto;

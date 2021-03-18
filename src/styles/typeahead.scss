@@ -1,4 +1,4 @@
-@import './shared.scss';
+@import "./shared.scss";
 
 @mixin center-abs {
   top: 50%;
@@ -26,7 +26,7 @@ $inputPaddingTop: 12px;
         border-bottom: 2px solid $gray;
         font-size: 18px;
         &.active {
-            border-color: $blue;
+          border-color: $blue;
         }
       }
       &::before {
@@ -35,12 +35,12 @@ $inputPaddingTop: 12px;
         left: 0;
         width: 18px;
         height: 18px;
-        content: '';
+        content: "";
         background-image: url(./icons/pin_gray.svg);
         @include center-abs();
       }
       &.selected::before {
-          background-image: url(./icons/pin.svg);
+        background-image: url(./icons/pin.svg);
       }
     }
   }
@@ -48,6 +48,7 @@ $inputPaddingTop: 12px;
   .lower {
     margin-top: 12px;
     padding: 20px 0;
+    padding-bottom: 0;
     border-top: 1px solid $gray;
     // Although Parent is set to overflow:hidden, enable nested scroll for child
     overflow-y: auto;
@@ -71,17 +72,18 @@ $inputPaddingTop: 12px;
           left: $leftOffset;
           width: 18px;
           height: 18px;
-          content: '';
+          content: "";
           background-image: url(./icons/pin.svg);
           @include center-abs();
         }
 
         // Hover and focus styles
-        &:hover, &.kb-selected {
+        &:hover,
+        &.kb-selected {
           background-color: rgba($color: $blue, $alpha: 0.15);
           &::after {
             position: absolute;
-            content: '';
+            content: "";
             left: 0;
             top: 0;
             bottom: 0;
@@ -89,13 +91,12 @@ $inputPaddingTop: 12px;
             background-color: $blue;
           }
         }
-
       }
     }
   }
 }
 
-@media (max-width:650px) {
+@media (max-width: 650px) {
   .typeahead .lower {
     height: auto;
     margin-top: 0;
